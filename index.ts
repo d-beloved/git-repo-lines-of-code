@@ -32,11 +32,11 @@ const getLinesOfCodeToExclude = async (filePaths: string[]): Promise<number> => 
  *
  * @param owner The owner of the Github repository.
  * @param repo The name of the Github repository.
- * @param excludePaths The paths to exclude, relative to the root of the repository.
+ * @param excludeFilePaths The file paths to exclude, relative to the root of the repository.
  * @returns The total number of lines of code in the repository, minus any lines of code in the given paths to exclude,
  *   or a string describing an error if the data could not be fetched.
  */
-const getRepoLinesOfCode = async (owner: string, repo: string, excludePaths: string[]): Promise<number|string> => {
+const getRepoLinesOfCode = async (owner: string, repo: string, excludeFilePaths: string[]): Promise<number|string> => {
 	const url = `https://api.github.com/repos/${owner}/${repo}/stats/code_frequency`;
 
 	try {
@@ -49,8 +49,8 @@ const getRepoLinesOfCode = async (owner: string, repo: string, excludePaths: str
 			return "Github - No data found for the given repository";
 		}
 
-		if (excludePaths) {
-			const locToExclude = await getLinesOfCodeToExclude(excludePaths);
+		if (excludeFilePaths && excludeFilePaths.length > 0) {
+			const locToExclude = await getLinesOfCodeToExclude(excludeFilePaths);
 			return linesOfCode - locToExclude;
 		}
 
