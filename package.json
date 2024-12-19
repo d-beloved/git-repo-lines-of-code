@@ -1,9 +1,12 @@
 {
   "name": "git-repo-lines-of-code",
   "version": "1.0.0",
-  "description": "Exclude files from the stat and get your repository lines of code",
-  "main": "index.js",
+  "description": "Get your Github repository's lines of code with an option of excluding any files from the stat",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "tsc -b --clean && tsc",
+    "start": "node dist/index.js",
+    "dev": "yarn run build && node dist/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
