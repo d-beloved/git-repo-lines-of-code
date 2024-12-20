@@ -1,19 +1,33 @@
 {
   "name": "git-repo-lines-of-code",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Get your Github repository's lines of code with an option of excluding any files from the stat",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -b --clean && tsc",
     "start": "node dist/index.js",
     "dev": "yarn run build && node dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "Javascript",
+    "Typescript",
+    "Github",
+    "API",
+    "Lines of code",
+    "LOC"
+  ],
+  "author": "Ayodeji Moronkeji",
+  "license": "MIT",
+  "repository": "github:d-beloved/git-repo-lines-of-code",
+  "bugs": "https://github.com/d-beloved/git-repo-lines-of-code/issues",
+  "publishConfig": {
+    "access": "public"
+  },
   "devDependencies": {
     "@types/node": "^22.10.2",
+    "jest": "^29.7.0",
     "typescript": "^5.7.2"
   }
 }
