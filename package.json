@@ -1,6 +1,6 @@
 {
   "name": "git-repo-lines-of-code",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Get your Github repository's lines of code with an option of excluding any files from the stat",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
