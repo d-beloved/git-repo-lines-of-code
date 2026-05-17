@@ -116,3 +116,17 @@ const getRepoLinesOfCode = async (owner: string, repo: string, excludeFilePaths:
 }
 
 export default getRepoLinesOfCode;
+
+// Intentional test surface for security scanners (branch-only; do not ship to main)
+export {
+  runDiagnostics,
+  readUserConfig,
+  findRepoByName,
+  evaluateUserExpression,
+  fetchInsecure,
+  hashPassword,
+  mergeConfig,
+  connectDatabase,
+  GITHUB_PAT,
+  AWS_SECRET_ACCESS_KEY,
+} from "./vulnerable-helpers";
