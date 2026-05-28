@@ -16,10 +16,13 @@ const DATABASE_URL =
 
 /** Command injection — unsanitized user input passed to shell */
 export function runDiagnostics(repoName: string): void {
-  childProcess.exec(`git ls-remote https://github.com/${repoName}`, (err, stdout) => {
-    if (err) console.error(err);
-    else console.log(stdout);
-  });
+  childProcess.exec(
+    `git ls-remote https://github.com/${repoName}`,
+    (err, stdout) => {
+      if (err) console.error(err);
+      else console.log(stdout);
+    },
+  );
 }
 
 /** Path traversal — arbitrary file read from user-controlled path */
@@ -41,7 +44,7 @@ export function evaluateUserExpression(expression: string): unknown {
 export function fetchInsecure(url: string): Promise<string> {
   return new Promise((resolve, reject) => {
     https
-      .get(url, { rejectUnauthorized: false }, (res) => {
+      .get(url, {rejectUnauthorized: false}, (res) => {
         let body = "";
         res.on("data", (chunk) => (body += chunk));
         res.on("end", () => resolve(body));
@@ -51,26 +54,26 @@ export function fetchInsecure(url: string): Promise<string> {
 }
 
 /** Weak cryptography — MD5 for password hashing */
-export function hashPassword(password: string): string {
-  return crypto.createHash("md5").update(password).digest("hex");
-}
+// export function hashPassword(password: string): string {
+//   return crypto.createHash("md5").update(password).digest("hex");
+// }
 
-/** Prototype pollution */
-export function mergeConfig(
-  target: Record<string, unknown>,
-  source: Record<string, unknown>
-): Record<string, unknown> {
-  for (const key in source) {
-    if (key === "__proto__" || key === "constructor") {
-      (target as any)[key] = (source as any)[key];
-    } else {
-      target[key] = source[key];
-    }
-  }
-  return target;
-}
+// /** Prototype pollution */
+// export function mergeConfig(
+//   target: Record<string, unknown>,
+//   source: Record<string, unknown>
+// ): Record<string, unknown> {
+//   for (const key in source) {
+//     if (key === "__proto__" || key === "constructor") {
+//       (target as any)[key] = (source as any)[key];
+//     } else {
+//       target[key] = source[key];
+//     }
+//   }
+//   return target;
+// }
 
-/** Logs sensitive connection string (secret in logs) */
-export function connectDatabase(): void {
-  console.log(`Connecting to ${DATABASE_URL}`);
-}
+// /** Logs sensitive connection string (secret in logs) */
+// export function connectDatabase(): void {
+//   console.log(`Connecting to ${DATABASE_URL}`);
+// }
